@@ -1,3 +1,6 @@
 {
-  "item.rainmaker.summon_rain": "Rain Maker"
+  "item.rainmaker.summon_rain": "Rain Maker",
+  "item.rainmaker.summon_storm": "Storm Maker",
+  "item.rainmaker.clear_weather": "Part Skies",
+  "itemGroup.rainmaker": "Rainmaker"
 }

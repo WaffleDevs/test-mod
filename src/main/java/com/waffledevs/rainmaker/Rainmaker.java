@@ -1,8 +1,8 @@
 package com.waffledevs.rainmaker;
 
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
+import com.waffledevs.rainmaker.item.SummonRain;
+import com.waffledevs.rainmaker.item.SummonStorm;
+import com.waffledevs.rainmaker.item.ClearWeather;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -47,8 +47,9 @@ public class Rainmaker
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
     // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
-    public static final DeferredItem<Item> SummonRainItem = ITEMS.registerSimpleItem("summon_rain", new Item.Properties().durability(10));
-    public static final DeferredItem<Item> SummonStormItem = ITEMS.registerSimpleItem("summon_storm", new Item.Properties().durability(10));
+    public static final DeferredItem<Item> SummonRainItem = ITEMS.registerItem("summon_rain", SummonRain::new, new Item.Properties().durability(10));
+    public static final DeferredItem<Item> SummonStormItem = ITEMS.registerItem("summon_storm", SummonStorm::new, new Item.Properties().durability(10));
+    public static final DeferredItem<Item> ClearWeatherItem = ITEMS.registerItem("clear_weather", ClearWeather::new, new Item.Properties().durability(10));
 
     // Creates a creative tab with the id "examplemod:example_tab" for the example item, that is placed after the combat tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("rainmaker_tab", () -> CreativeModeTab.builder()
@@ -58,6 +59,7 @@ public class Rainmaker
             .displayItems((parameters, output) -> {
                 output.accept(SummonRainItem.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
                 output.accept(SummonStormItem.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
+                output.accept(ClearWeatherItem.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
